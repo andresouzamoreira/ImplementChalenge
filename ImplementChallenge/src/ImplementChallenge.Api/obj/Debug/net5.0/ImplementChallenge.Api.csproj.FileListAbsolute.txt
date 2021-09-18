@@ -58,3 +58,9 @@ C:\ANDRE SOUZA\Estudos\ImplementChalenge\ImplementChallenge\src\ImplementChallen
 C:\ANDRE SOUZA\Estudos\ImplementChalenge\ImplementChallenge\src\ImplementChallenge.Api\obj\Debug\net5.0\ref\ImplementChallenge.Api.dll
 C:\ANDRE SOUZA\Estudos\ImplementChalenge\ImplementChallenge\src\ImplementChallenge.Api\obj\Debug\net5.0\ImplementChallenge.Api.pdb
 C:\ANDRE SOUZA\Estudos\ImplementChalenge\ImplementChallenge\src\ImplementChallenge.Api\obj\Debug\net5.0\ImplementChallenge.Api.genruntimeconfig.cache
+C:\ANDRE SOUZA\Estudos\ImplementChalenge\ImplementChallenge\src\ImplementChallenge.Api\obj\Debug\net5.0\ImplementChallenge.Api.csproj.AssemblyReference.cache
+C:\ANDRE SOUZA\Estudos\ImplementChalenge\ImplementChallenge\src\ImplementChallenge.Api\bin\Debug\net5.0\FluentValidation.dll
+C:\ANDRE SOUZA\Estudos\ImplementChalenge\ImplementChallenge\src\ImplementChallenge.Api\bin\Debug\net5.0\FluentValidation.AspNetCore.dll
+C:\ANDRE SOUZA\Estudos\ImplementChalenge\ImplementChallenge\src\ImplementChallenge.Api\bin\Debug\net5.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\ANDRE SOUZA\Estudos\ImplementChalenge\ImplementChallenge\src\ImplementChallenge.Api\bin\Debug\net5.0\AutoMapper.dll
+C:\ANDRE SOUZA\Estudos\ImplementChalenge\ImplementChallenge\src\ImplementChallenge.Api\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

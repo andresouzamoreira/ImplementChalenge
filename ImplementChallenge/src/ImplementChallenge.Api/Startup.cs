@@ -1,6 +1,8 @@
 using ImplementChallenge.Api.Data;
 using ImplementChallenge.Api.Interfaces;
+using ImplementChallenge.Api.Notificacoes;
 using ImplementChallenge.Api.Repository;
+using ImplementChallenge.Api.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -36,8 +38,16 @@ namespace ImplementChallenge.Api
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ImplementChallenge.Api", Version = "v1" });
             });
 
+                        
+
+            //Serviço de injeção de dependência do .net core
             services.AddScoped<ApplicationContext>();
+            services.AddScoped<INotificador, Notificador>();
+            services.AddScoped<ICurtidasRepository, CurtidaRepository>();           
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            services.AddScoped<ICurtidasService, CurtidaService>();
+
+            services.AddAutoMapper(typeof(Startup));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
