@@ -1,4 +1,5 @@
 using ImplementChallenge.Api.Data;
+using ImplementChallenge.Api.Data.Configuration;
 using ImplementChallenge.Api.Interfaces;
 using ImplementChallenge.Api.Notificacoes;
 using ImplementChallenge.Api.Repository;
@@ -38,8 +39,8 @@ namespace ImplementChallenge.Api
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ImplementChallenge.Api", Version = "v1" });
             });
 
-                        
 
+            services.ConfiguracaoJWT(Configuration);
             //Serviço de injeção de dependência do .net core
             services.AddScoped<ApplicationContext>();
             services.AddScoped<INotificador, Notificador>();
@@ -64,7 +65,9 @@ namespace ImplementChallenge.Api
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {

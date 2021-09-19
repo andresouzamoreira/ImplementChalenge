@@ -2,12 +2,14 @@
 using ImplementChallenge.Api.Domain;
 using ImplementChallenge.Api.Interfaces;
 using ImplementChallenge.Api.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 
 namespace ImplementChallenge.Api.Controllers
 {
+    [Authorize]
     [Route("api/Curtidas")]    
     public class CurtidasController : MainController
     {
@@ -20,14 +22,15 @@ namespace ImplementChallenge.Api.Controllers
             _mapper = mapper;
         }
 
-        [HttpPost]
+        
+        [HttpPost]        
         public async Task<ActionResult<CurtidasViewModel>> Post(CurtidasViewModel curtidasViewModel)
         {
             if (!ModelState.IsValid) return CustomResponse(ModelState);
 
             await _curtidasService.Adicionar(_mapper.Map<Curtidas>(curtidasViewModel));
 
-            return  Ok();
+            return  CustomResponse(curtidasViewModel);
         }
     }
 }

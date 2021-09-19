@@ -8,6 +8,6 @@ namespace ImplementChallenge.Api.Interfaces
 {
     public interface IUsuarioRepository : IRepository<Usuario>
     {
-        public Task<IEnumerable<Usuario>> ObterTodos();
+        public Task<bool> ExisteUsuario(string usuario, string senha);
     }
 }
