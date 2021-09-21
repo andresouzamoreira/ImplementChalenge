@@ -14,12 +14,14 @@ namespace ImplementChallenge.Api.Controllers
     public class CurtidasController : MainController
     {
         private readonly ICurtidasService _curtidasService;
+        private readonly ICurtidasRepository _curtidasRepository;
         private readonly IMapper _mapper;
 
-        public CurtidasController(INotificador notificador, ICurtidasService curtidasService, IMapper mapper) : base(notificador)
+        public CurtidasController(INotificador notificador, ICurtidasService curtidasService, IMapper mapper, ICurtidasRepository curtidasRepository) : base(notificador)
         {
             _curtidasService = curtidasService;
             _mapper = mapper;
+            _curtidasRepository = curtidasRepository;
         }
 
         
@@ -31,6 +33,12 @@ namespace ImplementChallenge.Api.Controllers
             await _curtidasService.Adicionar(_mapper.Map<Curtidas>(curtidasViewModel));
 
             return  CustomResponse(curtidasViewModel);
+        }
+
+        [HttpGet("TotalCurtidas")]
+        public async Task<ActionResult<int>> GetTotalCurtidas()
+        {          
+            return CustomResponse(await _curtidasRepository.ObterTotalCurtidas());
         }
     }
 }

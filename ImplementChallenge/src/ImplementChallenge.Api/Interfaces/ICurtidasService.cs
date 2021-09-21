@@ -10,6 +10,6 @@ namespace ImplementChallenge.Api.Interfaces
     {
         Task<bool> Adicionar(Curtidas curtidas);
         Task<bool> Remover(int id);
-        Task<bool> Atualizar(Curtidas curtidas);
+        Task<bool> Atualizar(Curtidas curtidas);       
     }
 }

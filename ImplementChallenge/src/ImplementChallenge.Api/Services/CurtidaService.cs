@@ -43,6 +43,7 @@ namespace ImplementChallenge.Api.Services
             _curtidasRepository?.Dispose();
         }
 
+
         public Task<bool> Remover(int id)
         {
             throw new NotImplementedException();

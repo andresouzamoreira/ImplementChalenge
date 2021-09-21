@@ -12,7 +12,12 @@ namespace ImplementChallenge.Api.Repository
     {
         public CurtidaRepository(ApplicationContext context) : base(context)
         {
+            
+        }
 
+        public async Task<int> ObterTotalCurtidas()
+        {
+            return  _DbContext.Curtidas.Select(c => c.TotalCurtidas).Sum();
         }
     }
 }

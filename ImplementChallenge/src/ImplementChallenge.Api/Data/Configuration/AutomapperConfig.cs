@@ -10,6 +10,7 @@ namespace ImplementChallenge.Api.Data.Configuration
 {
     public class AutomapperConfig : Profile
     {
+        //Este método não é chamado de nenhum ponto, ele é reconhecido apartir do startup na parte de  services.AddAutoMapper(typeof(Startup))
         public AutomapperConfig()
         {
             CreateMap<Curtidas, CurtidasViewModel>().ReverseMap();
