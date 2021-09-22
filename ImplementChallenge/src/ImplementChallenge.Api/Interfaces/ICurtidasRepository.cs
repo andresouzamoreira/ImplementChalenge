@@ -8,6 +8,6 @@ namespace ImplementChallenge.Api.Interfaces
 {
     public interface ICurtidasRepository : IRepository<Curtidas>
     {
-        Task<int> ObterTotalCurtidas();
+        public Task<int> ObterTotalCurtidas();
     }
 }

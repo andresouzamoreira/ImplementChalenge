@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ImplementChallenge.Api.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/Curtidas")]    
     public class CurtidasController : MainController
     {
@@ -26,19 +26,24 @@ namespace ImplementChallenge.Api.Controllers
 
         
         [HttpPost]        
-        public async Task<ActionResult<CurtidasViewModel>> Post(CurtidasViewModel curtidasViewModel)
+        public async Task<ActionResult<int>> Post(CurtidasViewModel curtidasViewModel)
         {
             if (!ModelState.IsValid) return CustomResponse(ModelState);
 
             await _curtidasService.Adicionar(_mapper.Map<Curtidas>(curtidasViewModel));
 
-            return  CustomResponse(curtidasViewModel);
+            return  CustomResponse(returTotalCurtidas());
         }
 
         [HttpGet("TotalCurtidas")]
         public async Task<ActionResult<int>> GetTotalCurtidas()
-        {          
-            return CustomResponse(await _curtidasRepository.ObterTotalCurtidas());
+        {
+            return CustomResponse(await returTotalCurtidas());
+        }
+
+        private async Task<ActionResult<int>> returTotalCurtidas()
+        {
+            return await _curtidasRepository.ObterTotalCurtidas();
         }
     }
 }

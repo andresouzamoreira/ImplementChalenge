@@ -47,7 +47,17 @@ namespace ImplementChallenge.Api.Repository
         }
         public async Task<int> SaveChanges()
         {
-            return await _DbContext.SaveChangesAsync();
+            try
+            {
+                return await _DbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+          
         }
     }
 }

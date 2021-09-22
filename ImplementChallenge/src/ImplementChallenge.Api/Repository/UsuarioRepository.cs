@@ -13,8 +13,11 @@ namespace ImplementChallenge.Api.Repository
     {
         public UsuarioRepository(ApplicationContext context) : base(context) { }
         public async Task<bool> ExisteUsuario(string usuario, string senha)
-        {            
-            return  (_DbContext.Usuario.Where(w=>w.Nome == usuario && w.Senha == senha).ToListAsync().Result.Count > 0);
+        {
+            int count = await _DbContext.Usuario.CountAsync(w => w.Nome == usuario && w.Senha == senha);
+
+            return count > 0;
+
         }
     }
 }

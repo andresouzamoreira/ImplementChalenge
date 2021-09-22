@@ -18,6 +18,7 @@ namespace ImplementChallenge.Api.Repository
         public async Task<int> ObterTotalCurtidas()
         {
             return  _DbContext.Curtidas.Select(c => c.TotalCurtidas).Sum();
+                        
         }
     }
 }
