@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "OkhmgxqujM5dDbjonGokUu0OdFpth/fT8tscyu/EFVZ5K1FiGMjHkWSiriaNENrMzPXxvOJDj/mk5JZEqfCguA==",
+  "dgSpecHash": "vpnOKhVZkDfjSAJMJ0hPjsc+vczA18nnobmuHDO/ZGMsIeBxsjxDDk+2CdTmCUqfoJEBYPyXozRLceq4WHT+5Q==",
   "success": true,
   "projectFilePath": "C:\\ANDRE SOUZA\\Estudos\\ImplementChalenge\\ImplementChallenge\\src\\ImplementChallenge.Api\\ImplementChallenge.Api.csproj",
   "expectedPackageFiles": [
@@ -44,7 +44,7 @@
     "C:\\Users\\andre.souza\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\andre.souza\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\andre.souza\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
-    "C:\\Users\\andre.souza\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "C:\\Users\\andre.souza\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.2\\swashbuckle.aspnetcore.swagger.6.2.2.nupkg.sha512",
     "C:\\Users\\andre.souza\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
     "C:\\Users\\andre.souza\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.6.3\\swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512",
     "C:\\Users\\andre.souza\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",

@@ -2,6 +2,7 @@
 using ImplementChallenge.Api.Interfaces;
 using ImplementChallenge.Api.ViewModels;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -28,7 +29,7 @@ namespace ImplementChallenge.Api.Controllers
             _appSettings = appSettings.Value;
         }
 
-        [HttpPost("api/Login")]
+        [HttpPost("api/Login")]        
         public async Task<ActionResult> Post(LoginViewModel loginViewModel)
         {            
             if (await IsExisteUsuario(loginViewModel))

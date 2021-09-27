@@ -3,11 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImplementChallenge.Api", "src\ImplementChallenge.Api\ImplementChallenge.Api.csproj", "{940ACDF2-FF54-40DE-9F08-C915ED500A89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImplementChallenge.Api", "src\ImplementChallenge.Api\ImplementChallenge.Api.csproj", "{940ACDF2-FF54-40DE-9F08-C915ED500A89}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9AA3F622-2368-4829-AED9-D5163E800C72}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		.editorconfig.inferred = .editorconfig.inferred
 	EndProjectSection
 EndProject
 Global

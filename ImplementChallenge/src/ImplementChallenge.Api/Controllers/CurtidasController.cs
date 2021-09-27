@@ -3,13 +3,14 @@ using ImplementChallenge.Api.Domain;
 using ImplementChallenge.Api.Interfaces;
 using ImplementChallenge.Api.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 
 namespace ImplementChallenge.Api.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/Curtidas")]    
     public class CurtidasController : MainController
     {
@@ -25,14 +26,16 @@ namespace ImplementChallenge.Api.Controllers
         }
 
         
-        [HttpPost]        
-        public async Task<ActionResult<int>> Post(CurtidasViewModel curtidasViewModel)
+        [HttpPost]                
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<CurtidasViewModel>> Post(CurtidasViewModel curtidasViewModel)
         {
             if (!ModelState.IsValid) return CustomResponse(ModelState);
 
             await _curtidasService.Adicionar(_mapper.Map<Curtidas>(curtidasViewModel));
 
-            return  CustomResponse(returTotalCurtidas());
+            return  CustomResponse(curtidasViewModel);
         }
 
         [HttpGet("TotalCurtidas")]
