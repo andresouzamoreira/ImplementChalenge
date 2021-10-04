@@ -34,8 +34,8 @@ namespace ImplementChallenge.Api.Controllers
         {            
             if (await IsExisteUsuario(loginViewModel))
                 return CustomResponse(GerarJWT());
-                
-            return CustomResponse(BadRequest());
+
+            return CustomResponse(NotFound());
         }
 
         private async Task<bool> IsExisteUsuario(LoginViewModel loginViewModel)

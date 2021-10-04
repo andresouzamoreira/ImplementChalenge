@@ -56,5 +56,11 @@ namespace ImplementChallenge.Api.Controllers
         {
             _notificador.Handle(new Notificacao(mensagem));   
         }
+
+        protected ActionResult CustomResponse(ModelStateDictionary modelState)
+        {
+            if (!modelState.IsValid) NotificarErroModelInvalida(modelState);
+            return CustomResponse();
+        }
     }
 }
