@@ -5,13 +5,8 @@ using System.Threading.Tasks;
 
 namespace ImplementChallenge.Api.Extensions
 {
-    public class AppSettings
+    public class ConfiguracaoFilaRabbit
     {
-        public string  Secret { get; set; }
-        public int ExpiracaoHoras { get; set; }
-        public string Emissor { get; set; }
-        public string ValidoEm { get; set; }
         public string UrlAcessoRabbit { get; set; }
-
     }
 }

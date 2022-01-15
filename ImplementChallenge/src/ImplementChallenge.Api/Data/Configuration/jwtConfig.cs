@@ -24,7 +24,7 @@ namespace ImplementChallenge.Api.Data.Configuration
             services.AddAuthentication(x=>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;                
             }).AddJwtBearer(x =>
             {
                 x.RequireHttpsMetadata = true;

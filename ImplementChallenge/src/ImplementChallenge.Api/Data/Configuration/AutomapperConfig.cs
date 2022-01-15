@@ -14,6 +14,7 @@ namespace ImplementChallenge.Api.Data.Configuration
         public AutomapperConfig()
         {
             CreateMap<Curtidas, CurtidasViewModel>().ReverseMap();
+            CreateMap<Usuario, UsuarioViewModel>().ReverseMap();           
         }
 
     }

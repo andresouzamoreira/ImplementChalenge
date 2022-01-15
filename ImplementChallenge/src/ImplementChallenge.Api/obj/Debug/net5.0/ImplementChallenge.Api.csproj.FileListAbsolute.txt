@@ -64,3 +64,4 @@ C:\ANDRE SOUZA\Estudos\ImplementChalenge\ImplementChallenge\src\ImplementChallen
 C:\ANDRE SOUZA\Estudos\ImplementChalenge\ImplementChallenge\src\ImplementChallenge.Api\bin\Debug\net5.0\AutoMapper.dll
 C:\ANDRE SOUZA\Estudos\ImplementChalenge\ImplementChallenge\src\ImplementChallenge.Api\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\ANDRE SOUZA\Estudos\ImplementChalenge\ImplementChallenge\src\ImplementChallenge.Api\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\ANDRE SOUZA\Estudos\ImplementChalenge\ImplementChallenge\src\ImplementChallenge.Api\bin\Debug\net5.0\RabbitMQ.Client.dll

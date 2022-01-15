@@ -1,5 +1,6 @@
 using ImplementChallenge.Api.Data;
 using ImplementChallenge.Api.Data.Configuration;
+using ImplementChallenge.Api.Extensions;
 using ImplementChallenge.Api.Interfaces;
 using ImplementChallenge.Api.Notificacoes;
 using ImplementChallenge.Api.Repository;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -16,6 +18,7 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace ImplementChallenge.Api
@@ -31,8 +34,9 @@ namespace ImplementChallenge.Api
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
-          
+        {   
+
+            //services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -61,6 +65,8 @@ namespace ImplementChallenge.Api
             });
 
 
+           // var appSettingsSection = Configuration.GetSection("ConfiguracaoFilaRabbit");
+            //services.Configure<ConfiguracaoFilaRabbit>(appSettingsSection);
 
             services.ConfiguracaoJWT(Configuration);
             //Serviço de injeção de dependência do .net core
@@ -69,8 +75,13 @@ namespace ImplementChallenge.Api
             services.AddScoped<ICurtidasRepository, CurtidaRepository>();           
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<ICurtidasService, CurtidaService>();
+            services.AddScoped<IEnvioPublishRabbitMQ, EnvioPublishRabbitMQ>();
+
+            services.AddOptions<ConfiguracaoFilaRabbit>().Bind(Configuration.GetSection("ConfiguracaoFilaRabbit"));
+
 
             services.AddAutoMapper(typeof(Startup));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

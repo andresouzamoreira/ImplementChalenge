@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -29,11 +30,13 @@ namespace ImplementChallenge.Api.Controllers
             _appSettings = appSettings.Value;
         }
 
-        [HttpPost("api/Login")]        
+        [HttpPost("api/Login")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         public async Task<ActionResult> Post(LoginViewModel loginViewModel)
         {            
             if (await IsExisteUsuario(loginViewModel))
-                return CustomResponse(GerarJWT());
+                return CustomResponse(GerarJWT(loginViewModel));
 
             return CustomResponse(NotFound());
         }
@@ -43,21 +46,37 @@ namespace ImplementChallenge.Api.Controllers
             return await _usuarioRepository.ExisteUsuario(loginViewModel.login, loginViewModel.Senha);
         }
 
-        private string GerarJWT()
+        private string GerarJWT(LoginViewModel loginViewModel)
         {
+            var user =  _usuarioRepository.BuscarUsuario(loginViewModel.login, loginViewModel.Senha);
+            var valorClaim = user.Result.ValorClaim;
+            var tipoClaim = user.Result.TipoClaim;
+
             var tokenHanlder = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+
             var token = tokenHanlder.CreateToken(new SecurityTokenDescriptor
             {
+                Subject = new ClaimsIdentity(new Claim[] 
+                {
+                    new Claim(ClaimTypes.Role,tipoClaim),    
+                    new Claim(ClaimTypes.Role,valorClaim),
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                    new Claim(JwtRegisteredClaimNames.Nbf, ToUnixEpochDate(DateTime.UtcNow).ToString()),
+                    new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(DateTime.UtcNow).ToString(), ClaimValueTypes.Integer64)
+                }),
+
                 Issuer = _appSettings.Emissor,
                 Audience = _appSettings.ValidoEm,
                 Expires = DateTime.UtcNow.AddHours(_appSettings.ExpiracaoHoras),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),SecurityAlgorithms.HmacSha256Signature)
             });
 
-            var encodeToken = tokenHanlder.WriteToken(token);
+            var encodeToken =  tokenHanlder.WriteToken(token);
 
             return encodeToken;
         }
+        private static long ToUnixEpochDate(DateTime date)
+            => (long)Math.Round((date.ToUniversalTime() - new DateTimeOffset(1970, 1, 1, 0, 0, 0, TimeSpan.Zero)).TotalSeconds);
     }
 }

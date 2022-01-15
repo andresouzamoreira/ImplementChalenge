@@ -19,5 +19,30 @@ namespace ImplementChallenge.Api.Repository
             return count > 0;
 
         }
+
+        public async Task<IEnumerable<Usuario>> OterTodosUsuariosOrdenados()
+        {
+            return await _DbContext.Usuario.AsNoTracking().OrderBy(o => o.Nome).ToListAsync();
+        }
+
+        public async Task<Usuario> BuscarUsuario(string nome, string senha)
+        {
+            var usuario = await _DbContext.Usuario.Where(w=>w.Nome == nome && w.Senha == senha).FirstOrDefaultAsync();
+
+            return usuario;
+        }
+
+        public async Task<Usuario> BuscarUsuarioPorId(int id)
+        {
+            var usuario = await _DbContext.Usuario.Where(w => w.Id == id).FirstOrDefaultAsync();
+            return usuario;
+        }
+
+        public async Task<IEnumerable<Usuario>> ObterTodosPaginacao(int paginaAtual, int itenPaginas)
+        {
+            var usuario = await _DbContext.Usuario.Skip((paginaAtual - 1) * itenPaginas).Take(itenPaginas).ToListAsync();
+
+            return usuario;
+        }
     }
 }
