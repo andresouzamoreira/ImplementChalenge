@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig.inferred = .editorconfig.inferred
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImplementChallengeTest", "ImplementChallengeTest\ImplementChallengeTest.csproj", "{02F20CAE-5723-49D6-A4E4-645AE4EF8B01}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{940ACDF2-FF54-40DE-9F08-C915ED500A89}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{940ACDF2-FF54-40DE-9F08-C915ED500A89}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{940ACDF2-FF54-40DE-9F08-C915ED500A89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02F20CAE-5723-49D6-A4E4-645AE4EF8B01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02F20CAE-5723-49D6-A4E4-645AE4EF8B01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02F20CAE-5723-49D6-A4E4-645AE4EF8B01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02F20CAE-5723-49D6-A4E4-645AE4EF8B01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
