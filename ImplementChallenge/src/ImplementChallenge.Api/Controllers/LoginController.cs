@@ -34,7 +34,13 @@ namespace ImplementChallenge.Api.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         public async Task<ActionResult> Post(LoginViewModel loginViewModel)
-        {            
+        {
+            if (string.IsNullOrEmpty(loginViewModel.login))
+                throw new Exception("Login não pode ser vazio ou nulo");
+
+            if (string.IsNullOrEmpty(loginViewModel.Senha))
+                throw new Exception("Senha não pode ser vazia ou nula");
+
             if (await IsExisteUsuario(loginViewModel))
                 return CustomResponse(GerarJWT(loginViewModel));
 

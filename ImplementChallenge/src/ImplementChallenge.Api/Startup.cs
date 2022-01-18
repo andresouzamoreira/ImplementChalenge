@@ -1,6 +1,7 @@
 using ImplementChallenge.Api.Data;
 using ImplementChallenge.Api.Data.Configuration;
 using ImplementChallenge.Api.Extensions;
+using ImplementChallenge.Api.Infraestrutura;
 using ImplementChallenge.Api.Interfaces;
 using ImplementChallenge.Api.Notificacoes;
 using ImplementChallenge.Api.Repository;
@@ -74,8 +75,8 @@ namespace ImplementChallenge.Api
             services.AddScoped<INotificador, Notificador>();
             services.AddScoped<ICurtidasRepository, CurtidaRepository>();           
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
-            services.AddScoped<ICurtidasService, CurtidaService>();
-            services.AddScoped<IEnvioPublishRabbitMQ, EnvioPublishRabbitMQ>();
+            services.AddScoped<ICurtidasService, CurtidaService>();            
+            services.AddScoped<IFila, GerenciadorRabbitMQ>();
 
             services.AddOptions<ConfiguracaoFilaRabbit>().Bind(Configuration.GetSection("ConfiguracaoFilaRabbit"));
 

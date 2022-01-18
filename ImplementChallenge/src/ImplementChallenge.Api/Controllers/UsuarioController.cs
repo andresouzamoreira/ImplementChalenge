@@ -1,40 +1,29 @@
 ﻿using AutoMapper;
-using ImplementChallenge.Api.Data;
 using ImplementChallenge.Api.Domain;
-using ImplementChallenge.Api.Extensions;
 using ImplementChallenge.Api.Interfaces;
-using ImplementChallenge.Api.Repository;
 using ImplementChallenge.Api.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
-using RabbitMQ.Client;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ImplementChallenge.Api.Controllers
 {
- 
+
     [Route("api/[controller]")]
     [ApiController]
     public class UsuarioController : MainController
-    {
-        private readonly IConfiguration _configuration;
+    {        
         private readonly IUsuarioRepository _usuarioRepository;
         private readonly IMapper _mapper;
-        private readonly IEnvioPublishRabbitMQ _envioPublishRabbitMQ;
+        private readonly IFila _fila;
 
-        public UsuarioController(IMapper mapper,IConfiguration configuration, IUsuarioRepository usuarioRepository, INotificador notificador, IEnvioPublishRabbitMQ envioPublishRabbitMQ) : base(notificador)
-        {
-            _configuration = configuration;
+        public UsuarioController(IMapper mapper, IUsuarioRepository usuarioRepository, INotificador notificador, IFila fila) : base(notificador)
+        {            
             _mapper = mapper;
             _usuarioRepository = usuarioRepository;
-            _envioPublishRabbitMQ = envioPublishRabbitMQ;
+            _fila = fila;
         }
 
         
@@ -44,13 +33,14 @@ namespace ImplementChallenge.Api.Controllers
         [ProducesResponseType(typeof(Usuario), StatusCodes.Status403Forbidden)]
         public async Task<ActionResult<UsuarioViewModel>> Post(UsuarioViewModel usuarioViewModel)
         {
-            if (!ModelState.IsValid) return CustomResponse(ModelState);
+            if (usuarioViewModel.Id != 0)
+                throw new System.Exception("Valor [ID] não pode ser preenchido para usuario no momento de inserir");
 
             #region inserir da fila rabbit
 
-            _envioPublishRabbitMQ.EnviaPublishRabbit(usuarioViewModel);
-            
+            _fila.Adicionar(usuarioViewModel);          
             #endregion
+
 
             await _usuarioRepository.Adicionar(_mapper.Map<Usuario>(usuarioViewModel));
 
@@ -90,7 +80,11 @@ namespace ImplementChallenge.Api.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<UsuarioViewModel>> Put(UsuarioViewModel usuarioViewModel)
         {
-            if (!ModelState.IsValid) return CustomResponse(ModelState);
+            if (usuarioViewModel.Id == 0)
+                throw new System.Exception("Id do usuário não pode ser zero");
+            if (string.IsNullOrEmpty(usuarioViewModel.Nome))
+                throw new System.Exception("O nome do usuário não pode ser vazio");
+            
 
             await _usuarioRepository.Atualizar(_mapper.Map<Usuario>(usuarioViewModel));
 
@@ -104,6 +98,9 @@ namespace ImplementChallenge.Api.Controllers
         [ProducesResponseType(typeof(Usuario),StatusCodes.Status200OK)]
         public async Task<ActionResult<UsuarioViewModel>> Delete(int id)
         {
+            if (id == 0)
+                throw new System.Exception("O valor do id não pode ser zero");
+
             await _usuarioRepository.Remover(id);
 
             return CustomResponse();

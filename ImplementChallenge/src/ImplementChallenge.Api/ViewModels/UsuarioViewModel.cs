@@ -10,7 +10,8 @@ namespace ImplementChallenge.Api.ViewModels
     {
         [Key]
         public int Id { get; set; }
-        [Required(ErrorMessage = "Favor digitar o nome do usuario")]
+
+        [Required(ErrorMessage = "Favor digitar o nome do usuario", AllowEmptyStrings = false)]
         public string Nome { get; set; }
         [Required(ErrorMessage = "Favor digitar uma senha para o usuário")]
         [StringLength(10, MinimumLength = 4, ErrorMessage = "A senha deve ter entre 4 e 10 caracteres")]
